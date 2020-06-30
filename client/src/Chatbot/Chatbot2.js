@@ -7,7 +7,7 @@ function Chatbot2() {
 
     //1. 내가 보낸 메세지를 관리(입력한 것을 채팅창에 보여주기 위해)
     let conversation = {
-        who: 'user',
+        who: 'user', 
         content: {
             text: {
                 text: text
@@ -21,9 +21,20 @@ function Chatbot2() {
     try{
         //textQuery Ro ute에 request를 보낸다.
        const response = await Axios.post('/api/dialogflow/textQuery', textQueryVariables )
-       
+       const content = response.data.fulfillmentMessages[0]
+       conversation = {
+           who: 'bot',
+           content: content
+       }
     } catch(error){
-
+        conversation = {
+            who: 'bot',
+            content: {
+                text: {
+                    text: "에러가 발생했으니, 문제를 확인해주세요"
+                }
+            }
+        }
     }
 }
 
