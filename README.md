@@ -119,3 +119,4 @@ const textQuery = async (text) => {
 # 
 ## `eventQuery` Func 생성
 - textQuery Func 과 유사하게 작성
+- 
